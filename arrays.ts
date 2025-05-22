@@ -90,8 +90,8 @@ function diagonalSums(matrix: Array<Array<number>>): Array<number> {
   if (matrix.length !== matrix[0].length) {
     throw new Error("Matrix must be square");
   }
-  let diagonalOne:number = 0;
-  let diagonalTwo:number = 0;
+  let diagonalOne: number = 0;
+  let diagonalTwo: number = 0;
 
   for (let i = 0; i < matrix.length; i++) {
     diagonalOne += matrix[i][i];
@@ -99,4 +99,21 @@ function diagonalSums(matrix: Array<Array<number>>): Array<number> {
   }
 
   return [diagonalOne, diagonalTwo];
+}
+
+function equalNeighbors(matrix: number[][]): number {
+  let counter: number = 0;
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      let curEl:number = matrix[i][j];
+      if (i + 1 < matrix.length && matrix[i + 1][j] === curEl) {
+        counter++;
+      }
+      if (j + 1 < matrix[i].length && matrix[i][j + 1] === curEl) {
+        counter++;
+      }
+    }
+  }
+  return counter;
 }
