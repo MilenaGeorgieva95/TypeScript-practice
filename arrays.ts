@@ -50,9 +50,53 @@ function smallestTwoNumbers(arr: number[]): number[] {
   return arr.splice(0, 2);
 }
 
-function biggerHalf(arr: Array<number>) {
+function biggerHalf(arr: Array<number>): Array<number> {
   arr.sort((a, b) => b - a);
   const length: number = Math.ceil(arr.length / 2);
   const result: Array<number> = arr.slice(length);
   return result;
+}
+function pieceOfPie(
+  arr: Array<string>,
+  flavourOne: string,
+  flavourTwo: string
+): Array<string> {
+  const start: number = arr.indexOf(flavourOne);
+  const end: number = arr.indexOf(flavourTwo) + 1;
+  const list: Array<string> = arr.slice(start, end);
+  return list;
+}
+
+function processOddPositions(arr: Array<number>): Array<number> {
+  const oddArr: Array<number> = arr
+    .filter((el, i) => i % 2 !== 0)
+    .map((x: number) => x * 2)
+    .reverse();
+  return oddArr;
+}
+function biggestElement(matrix: Array<Array<number>>): number {
+  let biggestNum: number = matrix[0][0];
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      if (matrix[i][j] > biggestNum) {
+        biggestNum = matrix[i][j];
+      }
+    }
+  }
+  return biggestNum;
+}
+function diagonalSums(matrix: Array<Array<number>>): Array<number> {
+  if (matrix.length !== matrix[0].length) {
+    throw new Error("Matrix must be square");
+  }
+  let diagonalOne:number = 0;
+  let diagonalTwo:number = 0;
+
+  for (let i = 0; i < matrix.length; i++) {
+    diagonalOne += matrix[i][i];
+    diagonalTwo += matrix[i][matrix.length - 1 - i];
+  }
+
+  return [diagonalOne, diagonalTwo];
 }
